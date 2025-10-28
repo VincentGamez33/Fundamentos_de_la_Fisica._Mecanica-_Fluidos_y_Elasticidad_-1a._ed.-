@@ -69,7 +69,6 @@
 \RequirePackage{cancel}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fvextra}
-\RequirePackage[bb=ams]{mathalpha}
 \RequirePackage{tabularx}
 \RequirePackage{stmaryrd}
 \RequirePackage{thmtools}
@@ -281,6 +280,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{fontspec}
 \usepackage{unicode-math}
+\RequirePackage[bb=ams]{mathalpha}
 
 \setmainfont{XITS}
 [    Extension = .otf,
