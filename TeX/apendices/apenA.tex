@@ -1,0 +1,572 @@
+\chapter[Análisis Vectorial]{ANÁLISIS VECTORIAL}
+\startcontents
+\printchaptertableofcontents
+
+En el estudio de la física, muchas magnitudes —como la velocidad, la fuerza o la aceleración— requieren no solo un valor numérico, sino también una dirección y un sentido. Para describirlas rigurosamente utilizamos vectores, y el álgebra vectorial nos brinda las herramientas para operar con ellos de manera precisa.
+
+\section{Conceptos Fundamentales}
+
+Estas operaciones son fundamentales para describir y analizar el movimiento de los cuerpos, comprender las interacciones de las fuerzas y resolver problemas en el espacio tridimensional. En este contexto, los vectores juegan un papel clave, ya que permiten representar cantidades físicas mediante sus componentes en cada dirección del espacio.
+
+Para formalizar esta idea, introducimos la siguiente definición:
+
+\begin{definition}{}{componentes}
+    Sea el vector $\veca = (a_x, a_y, a_z)$, entonces se les denomina \textbf{componentes} del vector $\veca$ a los coordenadas $a_x, a_y, a_z$ que lo definen.
+\end{definition}
+
+La siguiente figura ilustra esta definición, mostrando un vector en el espacio tridimensional junto con sus componentes y sus proyecciones sobre los planos coordenados.
+
+\begin{figure}
+    \centering
+    \tdplotsetmaincoords{70}{110}
+    \begin{tikzpicture}[scale=3.2,tdplot_main_coords,font=\footnotesize]
+        \coordinate (O) at (0,0,0);
+        \pgfmathsetmacro{\ax}{0.8}
+        \pgfmathsetmacro{\ay}{0.8}
+        \pgfmathsetmacro{\az}{0.8}
+        \coordinate (P) at (\ax,\ay,\az);
+        \fill[mainc!40,opacity=0.3] (O) -- (\ax,\ay,0) -- (P) -- cycle;
+        \draw[linea punteada] (\ax,\ay,0) -- (P)
+            node[right] {\color{black}$(a_x, a_y, a_z)$} -- (0,0,\az)
+            node[left] {\color{black}$(0,0,a_z)$};
+        \draw[linea punteada] (O) -- (\ax,\ay,0)
+            node[below right] {\color{black}$(a_x,a_y,0)$};
+        \draw[linea punteada] (\ax,0,0)
+            node[left] {\color{black}$(a_x,0,0)$} -- (\ax,\ay,0);
+        \draw[linea punteada] (\ax,\ay,0) -- (0,\ay,0)
+            node[above right] {\color{black}$(0,a_y,0)$};
+        \draw[ejes] (0,0,0) -- (1.2,0,0)
+            node[anchor=north east]{$x$};
+        \draw[ejes] (0,0,0) -- (0,1.2,0)
+            node[anchor=north west]{$y$};
+        \draw[ejes] (0,0,0) -- (0,0,1)
+            node[left]{$z$};
+        \draw[darkc] (0.73,0.73,0) -- (0.73,0.73,0.07) -- (\ax,\ay,0.07);
+        \draw[vector,mainc] (O) -- (P)
+            node[midway,above left] {\color{black}$\veca$};
+    \end{tikzpicture}
+    \caption{Representación geométrica del vector $\veca$.}
+    \label{fig:componentes}
+\end{figure}
+
+Además de sus componentes, un vector posee una magnitud o módulo, la cual se define de la siguiente manera:
+
+\begin{definition}{}{magnitud}
+    Definimos la \textbf{magnitud} del vector $\veca = (a_x, a_y, a_z)$ como el escalar:
+    $$a = |\veca| = \sqrt{a_x^2 + a_y^2 + a_z^2}.$$
+\end{definition}
+
+Un caso particular de gran utilidad en diversas aplicaciones es el de los vectores unitarios, los cuales se definen como sigue:
+
+\begin{definition}{}{vector_unitario}
+    Llamamos \textbf{unitario} a un vector que tiene magnitud igual a uno. A los vectores unitarios los podemos denotar con el símbolo circunflejo en lugar de la flecha arriba. Es decir, si $\veca$ es un vector unitario $|\veca| = 1$, entonces podemos escribirlo como $\hat{a}$.
+\end{definition}
+
+\section{Suma de vectores}
+
+Con la noción de componentes y magnitud establecida, se fundamenta la operación de la suma de vectores en $\RR[3]$, la cual se define a continuación.
+
+\begin{definition}{}{suma_vectores}
+    Sean $\veca = (a_x, a_y, a_z)$ y $\vecb = (b_x, b_y, b_z)$ dos vectores en $\RR[3]$, donde $a_x, a_y, a_z, b_x, b_y, b_z \in \RR$. La \textbf{suma de vectores} $\veca + \vecb$ se define como el vector
+    $$\veca + \vecb = (a_x + b_x, a_y + b_y, a_z + b_z).$$
+    Es decir, la suma de los vectores es el vector cuyas componentes son la suma de las correspondientes componentes de $\veca$ y $\vecb$.
+\end{definition}
+
+Las propiedades básicas de la suma en $\RR$ se trasladan naturalmente a la suma de vectores, lo que nos permite afirmar y demostrar el siguiente:\sideFigure[\label{fig:conmutativa}Representación geométrica de la propiedad conmutativa.]{
+    \begin{tikzpicture}[scale=0.61]
+        \draw[ejes] (-0.5,0) -- (5,0);
+        \draw[ejes] (0,-0.5) -- (0,5);
+        \draw[linea punteada] (1,0) -- (1,3) -- (0,3);
+        \draw[linea punteada] (0,1) -- (3,1) -- (3,0);
+        \draw[linea punteada] (1,3) -- (4,4)
+            node[midway, above left] {\color{black}$\veca$} -- (3,1)
+            node[midway, below right] {\color{black}$\vecb$};
+        \draw[linea punteada] (4,0) -- (4,4) -- (0,4);
+        \draw[vector,mainc!80] (0,0) -- (3,1)
+            node[right] {\color{black}$\veca$};
+        \draw[vector,mainc!80] (0,0) -- (1,3)
+            node[above left] {\color{black}$\vecb$};
+        \draw[vector,darkc] (0,0) -- (4,4)
+            node[midway, rotate=45, above] {\color{black}$\veca + \vecb$};
+    \end{tikzpicture}
+}\sideFigure[\label{fig:asociativa}Representación geométrica de la propiedad asociativa.]{
+    \begin{tikzpicture}[scale=0.45]
+        \draw[ejes] (-0.5,0) -- (7,0);
+        \draw[ejes] (0,-0.5) -- (0,7);
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (3,1);
+        \coordinate (B) at (4,4);
+        \coordinate (S) at (6,6);
+        \draw[linea punteada] (3,0) -- (A) -- (0,1);
+        \draw[linea punteada] (1,0) -- (1,3) -- (0,3);
+        \draw[linea punteada] (4,0) -- (4,4) -- (0,4);
+        \draw[linea punteada] (4,4) -- (6,4) -- (6,6) -- (4,6) -- cycle;
+        \draw[vector,ultralightc] (O) -- (A)
+            node[midway,above] {\color{black}$\veca$};
+        \draw[vector,ultralightc] (A) -- (B)
+            node[midway,left] {\color{black}$\vecb$};
+        \draw[vector,ultralightc] (B) -- (S)
+            node[midway,below right] {\color{black}$\vecc$};
+        \coordinate (P) at (1,3);
+        \coordinate (Q) at (3,5);
+        \coordinate (S2) at (6,6);
+        \draw[linea punteada] (1,3) -- (3,3) -- (3,5) -- (1,5) -- cycle;
+        \draw[linea punteada] (3,5) -- (6,5) -- (6,6) -- (3,6) -- cycle;
+        \draw[vector, mainc] (O) -- (P)
+            node[midway,left] {\color{black}$\vecb$};
+        \draw[vector,mainc] (P) -- (Q)
+            node[midway,above left] {\color{black}$\vecc$};
+        \draw[vector,mainc] (Q) -- (S2)
+            node[midway,above left] {\color{black}$\veca$};
+        % \draw[vector,darkc] (O) -- (S)
+        %     node[midway,above,rotate=45] {\color{black}$(\veca + \vecb) + \vecc$};
+    \end{tikzpicture}
+}
+
+\begin{theorem}{}{conmutatividad_y_asociatividad}
+    Sean $\veca, \vecb, \vecc \in \RR[3]$ vectores. Entonces, la suma de vectores es conmutativa y asociativa. Es decir,
+    \begin{enumerate}[label=\textit{\roman*)}]
+        \item $\veca + \vecb = \vecb + \veca$
+        \item $(\veca + \vecb) + \vecc = \veca + (\vecb + \vecc)$
+    \end{enumerate}
+    \vspace{2mm}
+    \begin{demostracion}
+        \begin{enumerate}[label=\textit{\roman*)}]
+            \item Por las Definiciones \ref{definition:componentes} y \ref{definition:suma_vectores}, se sigue que
+            \begin{align*}
+                \veca + \vecb & = (a_x + b_x, a_y + b_y, a_z + b_z)
+                \intertext{Debido a que la suma en $\RR$ es conmutativa, se tiene que} % , es decir, $a_x + b_x = b_x + a_x$, $a_y + b_y = b_y + a_y$ y $a_z + b_z = b_z + a_z$
+                & = (b_x + a_x, b_y + a_y, b_z + a_z) \\
+                & = (b_x, b_y, b_z) + (a_x, a_y, a_z) \\
+                & = \vecb + \veca.
+            \end{align*}
+            Por lo tanto, se cumple que $\veca + \vecb = \vecb + \veca$.
+            \item Análogamente al inciso anterior, consideramos ahora el lado izquierdo de la ecuación de la asociatividad:
+            \begin{align*}
+                (\veca + \vecb) + \vecc & = \big((a_x+b_x)+c_x, (a_y+b_y)+c_y, (a_z+b_z)+c_z\big) \\
+                & = (a_x + b_x + c_x, a_y + b_y + c_y, a_z + b_z + c_z) \\
+                & = (a_x+(b_x+c_x), a_y+(b_y+c_y), a_z+(b_z+c_z)) \\
+                & = \veca + (\vecb + \vecc).
+            \end{align*}
+            Por lo tanto, se cumple que $(\veca + \vecb) + \vecc = \veca + (\vecb + \vecc)$.
+        \end{enumerate}
+        Por lo tanto, queda demostrado así que la suma de vectores en $\RR[3]$ conserva las propiedades conmutativa y asociativa, heredadas directamente de las propiedades de la suma en $\RR$.
+    \end{demostracion}
+\end{theorem}
+
+En particular, además de la suma de vectores, otra operación fundamental en $\RR[3]$ es el producto de un escalar por un vector, el cual exploraremos a continuación.
+
+\section{Producto de un escalar por un vector}
+
+Habiendo establecido que la suma de vectores en $\RR[3]$ cumple las propiedades conmutativa y asociativa, podemos introducir una nueva operación fundamental en este espacio: el producto de un escalar por un vector.
+
+\begin{definition}{}{producto_escalar}
+    Sea $\lambda \in \RR$ un escalar y $\veca = (a_x, a_y, a_z) \in \RR[3]$ un vector. Se define el \textbf{producto de un escalar por un vector} como la operación que asigna a $\lambda$ y $\veca$ el vector:
+    $$\lambda \veca = (\lambda a_x, \lambda a_y, \lambda a_z).$$
+\end{definition}
+
+Esta operación cumple una serie de propiedades fundamentales, que se enuncian en el siguiente resultado.
+
+\begin{theorem}{}{propiedades_producto_escalar}
+    Sean $\veca, \vecb \in \RR[3]$ y sean $\lambda, \mu \in \RR$. Entonces se cumplen las siguientes propiedades:
+        \begin{enumerate}[label=\textit{\roman*)}]
+            \item \textbf{Conmutatividad}: $\lambda \veca = \veca \lambda$.
+            \item \textbf{Asociatividad respecto al producto de escalares}: $(\lambda \cdot \mu)\veca = \lambda(\mu \cdot \veca)$.
+            \item \textbf{Distributividad respecto a la suma de escalares}: $(\lambda + \mu) \veca = \lambda\veca + \mu\veca$.
+            \item \textbf{Distributividad respecto a la suma de vectores}: $\lambda(\veca + \vecb) = \lambda\veca + \lambda\vecb$.
+        \end{enumerate}
+    \begin{demostracion}
+        Los incisos \romano{ii} y \romano{iv} se dejan como ejercicios para el lector.
+        \begin{enumerate}[label=\textit{\roman*)}]
+            \item Por la \ref{definition:producto_escalar} en $\RR[3]$, se tiene:
+            $$\lambda\veca = \lambda(a_x, a_y, a_z) = (\lambda a_x, \lambda a_y, \lambda a_z).$$
+            Usando la propiedad conmutativa del producto en $\RR$, se sigue que:
+            $$\lambda\veca = (a_x \lambda, a_y \lambda, a_z \lambda) = \veca\lambda.$$
+            Por lo tanto, se cumple la conmutatividad del producto escalar por un vector.
+            \item[\textit{iii)}] Por la \ref{definition:producto_escalar} se sigue:
+            \begin{align*}
+                (\lambda + \mu) \veca & = \left((\lambda + \mu)a_x, (\lambda + \mu)a_y, (\lambda + \mu)a_z\right).
+                \intertext{Aplicando la propiedad distributiva del producto respecto a la suma en $\RR$, se tiene que:}
+                & = (\lambda a_x + \mu a_x, \lambda a_y + \mu a_y, \lambda a_z + \mu a_z) \\
+                & = (\lambda a_x, \lambda a_y, \lambda a_z) + (\mu a_x, \mu a_y, \mu a_z) \\
+                & = \lambda\veca + \mu\veca.
+            \end{align*}
+            Por lo tanto, queda demostrada la distributividad respecto a la suma de escalares.
+        \end{enumerate}
+    \end{demostracion}
+\end{theorem}
+
+La demostración anterior nos permitió establecer propiedades fundamentales del producto de un escalar por un vector, como la conmutatividad y la distributividad respecto a la suma de escalares. Estas propiedades son esenciales en el desarrollo del álgebra vectorial, ya que describen con precisión la interacción entre vectores y escalares en $\RR[3]$.\sideFigure[\label{fig:producto_escalar}Representación geométrica del producto de un escalar por un vector.]{
+    \begin{tikzpicture}[scale=0.62]
+        \draw[linea punteada 2] (2.25,0) -- (2.25,2.25) -- (0,2.25);
+        \draw[linea punteada 2] (4,0) -- (4,4) -- (0,4);
+        \draw[linea punteada 2] (2.25,0) -- (2.25,2.25) -- (0,2.25);
+        \draw[ejes] (-0.5,0) -- (5,0);
+        \draw[ejes] (0,-0.5) -- (0,5);
+        \draw[vector,ultralightc!50] (0,0) -- (4,4)
+            node[above] {\color{black}$\lambda\veca$};
+        \draw[vector,mainc] (0,0) -- (2.25,2.25)
+            node[midway,above,rotate=45] {\color{black}$\veca$};
+    \end{tikzpicture}
+}\sideFigure[\label{fig:paralelismo}Interpretación geométrica del paralelismo de dos vectores.]{
+    \begin{tikzpicture}[scale=0.66]
+        \coordinate (lb1) at (-0.6153846153846,0.9230769230769);
+        \coordinate (lb2) at (2.3846153846154,2.9230769230769);
+        \draw[ejes] (-1,0) -- (4,0);
+        \draw[ejes] (0,-0.25) -- (0,4);
+        \draw[vector,mainc] (0,0) -- (3,2)
+            node[midway,above left] {\color{black}$\veca$};
+        \draw[vector,ultralightc] (lb1) -- (lb2)
+            node[midway,above left,rotate=33.6900675259798] {$\lambda\vecb$};
+    \end{tikzpicture}
+}
+
+En este contexto, es útil introducir una relación geométrica clave entre los vectores: el concepto de paralelismo.
+
+\begin{definition}{}{vectores_paralelos}
+    Se dice que dos vectores $\veca, \vecb \in \RR[3]$ son \textbf{paralelos} si existe un escalar $\lambda \in \RR$ tal que
+    $$\veca = \lambda \vecb.$$
+\end{definition}
+
+Geométricamente, esto significa que ambos vectores tienen la misma dirección o direcciones opuestas, dependiendo del signo de $\lambda$. Si $\lambda > 0$, los vectores apuntan en la misma dirección; si $\lambda < 0$, en direcciones opuestas (véase la Figura~\ref{fig:paralelismo}).
+
+El concepto de paralelismo es fundamental en numerosas aplicaciones de la física y la geometría, especialmente en el estudio de fuerzas, velocidades y líneas en el espacio. Por ejemplo, en el análisis del movimiento rectilíneo uniforme, las velocidades de diferentes partículas pueden representarse mediante vectores paralelos cuando todas se desplazan en la misma dirección, aunque con magnitudes distintas.
+
+Para describir con precisión cualquier vector en $\RR[3]$, resulta conveniente introducir un sistema de referencia basado en una base ortonormal:
+
+\begin{definition}{}{base_canonica}
+    En el sistema de coordenadas cartesianas, los \textbf{vectores canónicos}, también llamados \textbf{vectores de la base estándar}, se definen como
+    $$\veci = (1,0,0), \quad \vecj = (0,1,0), \quad \veck = (0,0,1).$$
+\end{definition}
+
+Estos vectores poseen propiedades fundamentales:
+
+\begin{itemize}
+    \item Son \textbf{unitarios}, es decir, su norma es 1.
+    \item Son \textbf{mutuamente perpendiculares}, formando así una \textbf{base ortonormal} en $\RR[3]$.
+    \item Permiten expresar cualquier vector como una combinación lineal sencilla.
+\end{itemize}
+
+\begin{definition}{}{vectores_con_base_canonica}
+    Dado un vector $\veca = (a_x, a_y, a_z)$, podemos expresarlo en términos de los vectores canónicos como
+    $$\veca = a_x\veci + a_y\vecj + a_z\veck.$$
+\end{definition}
+
+Esta descomposición es especialmente útil para realizar cálculos algebraicos y geométricos de manera estructurada.
+
+Ahora que disponemos de una forma clara y sistemática de representar los vectores en $\RR[3]$, podemos introducir una de las operaciones más fundamentales en el álgebra vectorial: el \textbf{producto interno}, herramienta clave para definir conceptos como la perpendicularidad y la proyección de vectores.
+
+\section[Producto interno]{Producto interno o producto escalar}
+
+El producto interno, también conocido como producto escalar, es una operación que no solo nos permite calcular el ángulo entre dos vectores, sino también determinar la longitud de la proyección de un vector sobre otro. Además, esta operación tiene aplicaciones esenciales en diversas áreas de las matemáticas, la física y la ingeniería, ya que establece una forma natural de medir la ``relación" entre dos vectores. Al calcular el producto interno, podemos determinar si dos vectores son ortogonales y usar este criterio para diversos análisis.
+
+Gracias a esta propiedad geométrica, el producto interno facilita la resolución de problemas relacionados con la dirección y el ángulo entre vectores, como los utilizados en la teoría de proyecciones y en el análisis de sistemas lineales.
+
+\begin{definition}{}{producto_interno_geometrico}
+    El \textbf{producto interno} de dos vectores $\veca, \vecb \in \RR[3]$ se define como el número real dado por
+    $$\veca \cdot \vecb = \|\veca\| \|\vecb\| \cos\theta,$$
+    donde $\theta$ es el ángulo formado entre los vectores $\veca$ y $\vecb$. Se toma como referencia el menor de los dos ángulos suplementarios determinados por los vectores.
+\end{definition}
+
+El producto interno se puede calcular sin necesidad de conocer el ángulo explícitamente. Para ello, utilizamos una fórmula alternativa que expresa el producto interno directamente en términos de las coordenadas de los vectores. Esta fórmula se obtiene del uso del sistema de coordenadas cartesianas y proporciona una forma algebraica de calcular el producto interno sin recurrir al ángulo entre los vectores. Dicha fórmula, se demuestra del siguiente:
+
+\begin{theorem}{}{producto_interno_canonico}
+    Sean $\veca, \vecb \in \RR[3]$ vectores. Entonces su producto interno puede expresarse como:
+    $$\veca \cdot \vecb = a_x b_x + a_y b_y + a_z b_z.$$
+    \begin{demostracion}
+        Consideremos el producto interno de los vectores $\veca$ y $\vecb$, el cual, según la \ref{definition:producto_interno_geometrico}, está dado por la expresión
+            $$\veca \cdot \vecb = \|\veca\| \|\vecb\| \cos \theta,$$
+            donde $\theta$ es el ángulo entre los vectores $\veca$ y $\vecb$.
+            
+            Ahora, examinamos la magnitud del vector diferencia $ \vecb - \veca $. La magnitud al cuadrado de este vector se puede escribir como
+            $$\|\vecb - \veca\|^2 = (b_x - a_x)^2 + (b_y - a_y)^2 + (b_z - a_z)^2,$$
+            lo que se puede expandir utilizando la identidad algebraica para el cuadrado de la diferencia. Al desarrollar los términos, obtenemos
+            $$\|\vecb - \veca\|^2 = \sum_{i=x,y,z} (b_i^2 - 2a_i b_i + a_i^2) = \|\vecb\|^2 + \|\veca\|^2 - 2(a_x b_x + a_y b_y + a_z b_z).$$
+            
+            Por otro lado, la magnitud del vector diferencia también puede expresarse tomando como cierta la ley de los cosenos para vectores. La cual, establece que
+            $$\|\vecb - \veca\|^2 = \|\veca\|^2 + \|\vecb\|^2 - 2 \|\veca\| \|\vecb\| \cos \theta.$$
+            Al igualar ambas expresiones obtenidas para $\|\vecb - \veca\|^2$, se tiene
+            $$\|\veca\|^2 + \|\vecb\|^2 - 2(a_x b_x + a_y b_y + a_z b_z) = \|\veca\|^2 + \|\vecb\|^2 - 2 \|\veca\| \|\vecb\| \cos \theta.$$
+            Cancelando los términos comunes de ambos lados de la ecuación y multiplicando por $-\frac{1}{2}$, se obtiene
+            $$a_x b_x + a_y b_y + a_z b_z = \|\veca\| \|\vecb\| \cos \theta.$$
+            Finalmente, utilizando la \ref{definition:producto_escalar} del producto interno, se concluye que
+            \[ \veca \cdot \vecb = a_x b_x + a_y b_y + a_z b_z. \]
+    \end{demostracion}
+\end{theorem}
+
+Después de haber discutido el producto interno, es relevante abordar el concepto de otro tipo de operación entre vectores, el \textbf{producto cruz} o \textbf{producto vectorial}. Mientras que el producto interno da como resultado un número escalar, el producto cruz genera un vector que tiene una dirección perpendicular al plano determinado por los vectores involucrados, y cuya magnitud está relacionada con el área del paralelogramo que estos vectores definen.
+
+\section[Producto cruz]{Producto cruz o producto vectorial}
+
+A continuación, presentaremos la definición del producto cruz en $\RR[3]$, que es una operación fundamental para el análisis geométrico y físico, especialmente cuando se trata de calcular momentos de fuerza, áreas de superficies y otros conceptos vectoriales.\sideFigure[\label{fig:righthand_rule}Muestra la \textit{``regla de la mano derecha"}, utilizada para determinar la dirección del vector resultante en un producto cruz. Al extender los dedos de la mano derecha en la dirección de los vectores multiplicados, el pulgar apunta en la dirección del vector resultante. Figura adaptada del \href{https://tikz.net/righthand_rule/}{\color{mainc}sitio}.]{
+    \begin{tikzpicture}[scale=0.43,vector/.style={ultra thick,-latex}]
+        \coordinate (O) at (1.2,0.3); % ORIGIN
+        \coordinate (WT) at ( 2.9,-1.1); % WRIST TOP
+        \coordinate (T1) at ( 2.3, 0.7); % THUMB
+        \coordinate (T2) at ( 1.75, 2.3);
+        \coordinate (T3) at ( 2.0, 3.1);
+        \coordinate (T4) at (1.38, 3.15);
+        \coordinate (T5) at ( 0.9, 2.3);
+        \coordinate (T6) at ( 0.85, 1.2);
+        \coordinate (T7) at ( 0.85, 0.2);
+        \coordinate (I1) at (-1.0, 2.4); % INDEX
+        \coordinate (I2) at (-2.9, 3.45);
+        \coordinate (I3) at (-3.3, 2.9);
+        \coordinate (I4) at (-1.5, 1.8);
+        \coordinate (I5) at (-0.9, 1.1);
+        \coordinate (I6) at (-0.9, 0.5);
+        \coordinate (M1) at (-2.2, 1.25); % MIDDLE
+        \coordinate (M2) at (-3.9, 1.4);
+        \coordinate (M3) at (-4.0, 0.8);
+        \coordinate (M4) at (-2.3, 0.5);
+        \coordinate (M5) at (-1.1, 0.25);
+        \coordinate (R1) at (-1.9,-0.1); % RING
+        \coordinate (R2) at (-1.8,-0.7);
+        \coordinate (R3) at (-0.3,-1.5);
+        \coordinate (R4) at ( 0.1,-1.7);
+        \coordinate (R5) at ( 0.1,-1.0);
+        \coordinate (R6) at (-0.5,-0.7);
+        \coordinate (R7) at (-1.2,-0.3);
+        \coordinate (P1) at (-1.9,-1.3); % PINKY
+        \coordinate (P2) at (-0.8,-1.9);
+        \coordinate (P3) at (-0.2,-2.1);
+        \coordinate (P4) at (-0.05,-1.65);
+        \coordinate (W1) at ( 0.4,-2.9); % WRIST BOTTOM
+        \coordinate (W2) at ( 1.6,-3.5);
+        % HAND
+        \fill[brownskin]
+            (WT) -- (T6) -- (I5) -- (M5) -- (R2) -- (P2) -- (W2) to[out=25,in=-90] cycle;
+        \draw[fill=brownskin]
+            (WT) to[out=120,in=-60] % THUMB
+            (T1) to[out=120,in=-90]
+            (T2) to[out=80,in=-110]
+            (T3) to[out=80,in=50,looseness=1.5] % tip
+            (T4) to[out=-130,in=80]
+            (T5) to[out=-100,in=70]
+            (T6) to[out=-100,in=100]
+            (T7)
+            (T6) to[out=150,in=-30] % INDEX
+            (I1) to[out=150,in=-30]
+            (I2) to[out=150,in=145,looseness=1.7] % tip
+            (I3) to[out=-30,in=150]
+            (I4) to[out=-30,in=105]
+            (I5) to[out=-75,in=100]
+            (I6)
+            (I5) -- % MIDDLE
+            (M1) --
+            (M2) to[out=170,in=180,looseness=1.5] % tip
+            (M3) to[out=-5,in=175]
+            (M4) to[out=-5,in=165] % bottom knuckle
+            (M5)
+            (M5) to[out=-160,in=50] % RING
+            (R1) to[out=-130,in=140,looseness=1.2]
+            (R2) to[out=-30,in=160]
+            (R3) --
+            (R4) to[out=-20,in=-20,looseness=1.5] % tip
+            (R5) --
+            (R6) to[out=140,in=8,looseness=0.9]
+            (R7)
+            (R2) to[out=-160,in=155] % PINKY
+            (P1) to[out=-35,in=150]
+            (P2) to[out=-30,in=160]
+            (P3) to[out=-20,in=-30,looseness=1.5] % tip
+            %(P4) --
+            (R4)
+            (P2) to[out=-50,in=140] % WRIST
+            (W1) to[out=-40,in=160]
+            (W2);
+        % FOLDS
+        \draw[very thin] (T5)++(-80:0.3) to[out=40,in=180]++ (25:0.45);
+        \draw[very thin] (I1)++(180:0.2) to[out=-160,in=100]++ (-130:0.6);
+        \draw[very thin] (I1)++(155:1.3) to[out=-160,in=90]++ (-135:0.55);
+        \draw[very thin] (M4)++(140:0.1) to[out=110,in=-140]++ (80:0.6);
+        \draw[very thin] (M3)++(-5:0.6) to[out=100,in=-130]++ (80:0.5);
+        \draw[very thin] (M5)++(-140:0.1) to[out=-20,in=90]++ (-54:0.8); % RING
+        \draw[very thin] (R6) to[out=160,in=10]++ (180:0.2);
+        \draw[very thin] (R3)++(155:0.5) to[out=120,in=-100]++ (100:0.2);
+        \draw[very thin] (P2)++(140:0.1) to[out=95,in=-110]++ (80:0.4);
+        \draw[very thin] (I5)++(-40:0.45) to[out=-70,in=90]++ (-70:1.7);    % PALM
+        \draw[very thin] (P3)++(-155:0.05) to[out=-120,in=40]++ (-130:0.2); % PALM
+        \draw[very thin] (W2)++(80:1.3) to[out=-180,in=-50]++ (160:1.2); % PALM
+        % VECTORS
+        \draw[vector,verde] (O) --++ (85:3.4)
+            node[above] {\color{black}$\veca\times\vecb$};
+        \draw[vector,rojo] (O) --++ (145:3.7) coordinate (A)
+            node[above left] {$\veca$};
+        \draw[vector,azul] (O) --++ (172:3.7) coordinate (B)
+            node[left] {$\vecb$};
+        \draw pic[latex-,"$\theta$",draw=black,thick,angle radius=30,angle eccentricity=1.25] {angle = A--O--B};
+    \end{tikzpicture}
+}
+
+\begin{definition}{}{producto_cruz}
+    Definimos el \textbf{producto cruz} de dos vectores $\veca, \vecb \in \RR[3]$ como el vector $\veca \times \vecb$ que cumple:
+    $$\|\veca \times \vecb\| = \|\veca\|\,\|\vecb\| \sen \theta,$$
+    donde $\theta$ es el ángulo entre $\veca$ y $\vecb$. La dirección de $\veca \times \vecb$ es perpendicular al plano determinado por estos vectores y su sentido se establece mediante la \textbf{regla de la mano derecha} (véase la Figura~\ref{fig:righthand_rule}). Formalmente, se expresa como:
+    $$\veca \times \vecb = \|\veca\|\,\|\vecb\| \sen \theta \,\uniu,$$
+    siendo $\uniu$ el vector unitario perpendicular a $\veca$ y $\vecb$ de acuerdo con dicha orientación.
+\end{definition}
+
+A continuación, se demuestra que la expresión del determinante es totalmente equivalente a la definición geométrica presentada anteriormente.
+
+\begin{theorem}{}{producto_cruz_con_determinante}
+    Sean $\veca, \vecb \in \RR[3]$ vectores. Entonces su producto vectorial se expresa mediante
+    $$\veca \times \vecb =
+    \begin{vmatrix}
+        \veci & \vecj & \veck \\
+        a_x   & a_y   & a_z   \\
+        b_x   & b_y   & b_z
+    \end{vmatrix}
+    = (a_y b_z - a_z b_y)\,\veci + (a_z b_x - a_x b_z)\,\vecj + (a_x b_y - a_y b_x)\,\veck.$$
+    \begin{demostracion}
+        Definimos el producto vectorial como
+        $$\veca \times \vecb =
+        \begin{vmatrix}
+            \veci & \vecj & \veck \\
+            a_x   & a_y   & a_z   \\
+            b_x   & b_y   & b_z
+        \end{vmatrix},$$
+        y al expandir por cofactores en la primera fila, obtenemos:
+        $$\veca \times \vecb =
+        (a_y b_z - a_z b_y)\,\veci
+        + (a_z b_x - a_x b_z)\,\vecj
+        + (a_x b_y - a_y b_x)\,\veck.$$
+        Denotando $\veca \times \vecb = (c_1, c_2, c_3)$, donde
+        $$c_1 = a_y b_z - a_z b_y,\quad c_2 = a_z b_x - a_x b_z,\quad c_3 = a_x b_y - a_y b_x,$$
+        verificamos su ortogonalidad con respecto a $\veca$:
+        $$\veca \cdot (\veca \times \vecb) = a_x c_1 + a_y c_2 + a_z c_3 = 0,$$
+        ya que al sustituir y agrupar los términos, se anulan simétricamente. De manera análoga, se cumple
+        $$\vecb \cdot (\veca \times \vecb) = 0,$$
+        lo que confirma que $\veca \times \vecb$ es ortogonal a ambos vectores.
+
+        Finalmente, su magnitud se calcula como
+        $$\|\veca \times \vecb\| = \sqrt{c_1^2 + c_2^2 + c_3^2},$$
+        aplicando el teorema de Lagrange:
+        $$\|\veca \times \vecb\|^2 = \|\veca\|^2 \|\vecb\|^2 - (\veca \cdot \vecb)^2,$$
+        y sustituyendo \(\veca \cdot \vecb = \|\veca\|\,\|\vecb\|\,\cos\theta\), se obtiene:
+        $$\|\veca \times \vecb\|^2 = \|\veca\|^2 \|\vecb\|^2 (1 - \cos^2\theta).$$
+        Usando la identidad trigonométrica \(\sen^2\theta + \cos^2\theta = 1\), se concluye que:
+        $$\|\veca \times \vecb\| = \|\veca\|\,\|\vecb\|\,\sen\theta,$$
+        donde $\theta$ es el ángulo entre $\veca$ y $\vecb$. Esta magnitud corresponde al área del paralelogramo determinado por ambos vectores, otorgando una interpretación geométrica al producto vectorial.
+
+        En conclusión, la definición mediante determinantes proporciona un vector perpendicular a $\veca$ y $\vecb$, cuya magnitud representa el área del paralelogramo que forman.
+    \end{demostracion}
+\end{theorem}
+
+Posteriormente, se dan en el siguiente teorema las propiedades fundamentales del producto vectorial, las cuales lo convierten en una herramienta esencial en el estudio algebraico y geométrico de los vectores.
+
+\begin{theorem}{}{propiedades_producto_cruz}
+    Para cualesquiera $\veca, \vecb, \vecc \in \RR[3]$ y $\lambda \in \RR$, se verifican:
+    \begin{enumerate}[label=\textit{\roman*)}]
+        \item \textbf{Anticonmutatividad:} $\veca \times \vecb = -\vecb \times \veca$.
+        \item \textbf{Asociatividad:} $\lambda\,(\veca \times \vecb) = (\lambda\veca) \times \vecb = \veca \times (\lambda\vecb)$.
+        \item \textbf{Distributividad:} $\veca \times (\vecb + \vecc) = \veca \times \vecb + \veca \times \vecc$.
+        \item \textbf{Producto de Vectores Unitarios:} $\veci \times \veci = \vecj \times \vecj = \veck \times \veck = \vecce, \quad \veci \times \vecj = \veck, \quad \vecj \times \veck = \veci, \quad \veck \times \veci = \vecj.$
+    \end{enumerate}
+    \vspace{2mm}
+    \begin{demostracion}
+        Los incisos \romano{ii}, \romano{iii} y \romano{iv} se dejan como ejercicio al lector.
+        \begin{enumerate}[label=\textit{\roman*)}]
+            \item Sean $\veca, \vecb \in \RR[3]$, con componentes
+            $$\veca = (a_1, a_2, a_3), \qquad \vecb = (b_1, b_2, b_3).$$
+            Usando la \ref{definition:producto_cruz}, el producto cruz de $\veca$ con $\vecb$ se define como:
+            $$\veca \times \vecb = 
+            \begin{vmatrix}
+                \veci & \vecj & \veck \\
+                a_1 & a_2 & a_3 \\
+                b_1 & b_2 & b_3
+            \end{vmatrix}
+            = (a_2b_3 - a_3b_2)\veci - (a_1b_3 - a_3b_1)\vecj + (a_1b_2 - a_2b_1)\veck.$$
+            Análogamente, el producto cruz de $\vecb$ con $\veca$ es:
+            $$\vecb \times \veca = 
+            \begin{vmatrix}
+                \veci & \vecj & \veck \\
+                b_1 & b_2 & b_3 \\
+                a_1 & a_2 & a_3
+            \end{vmatrix}
+            = (b_2a_3 - b_3a_2)\veci - (b_1a_3 - b_3a_1)\vecj + (b_1a_2 - b_2a_1)\veck.$$
+            Observamos que:
+            $$\veca \times \vecb = -\left( (a_2b_3 - a_3b_2)\veci - (a_1b_3 - a_3b_1)\vecj + (a_1b_2 - a_2b_1)\veck \right) = -(\veca \times \vecb).$$
+            Por lo tanto, producto cruz es anticonmutativo. Es decir,
+            \[ \vecb \times \veca = -(\veca \times \vecb). \]
+        \end{enumerate}
+    \end{demostracion}
+\end{theorem}
+
+\section{Derivada de un vector}
+
+Si el vector $\vecr(t)$ representa la \textbf{posición} de una partícula en el tiempo $t$, su derivada, $\dfrac{d\vecr}{dt}$, define su vector \textbf{velocidad} $\vecv(t)$. Esta conexión es la piedra angular de la cinemática.
+
+Cuando las componentes de un vector son funciones diferenciables de una variable independiente $t$, podemos definir la derivada de dicho vector de forma coherente con el cálculo diferencial.
+
+\begin{definition}{}{derivada_vector}
+    Sea $\vecr(t) = x(t)\,\veci + y(t)\,\vecj + z(t)\,\veck$ un vector cuyas componentes $x(t)$, $y(t)$ y $z(t)$ son funciones diferenciables de $t$. La derivada de $\vecr(t)$ con respecto a $t$ se define por
+    $$\frac{d\vecr}{dt} = \frac{dx}{dt}\,\veci + \frac{dy}{dt}\,\vecj + \frac{dz}{dt}\,\veck.$$
+\end{definition}
+
+Esta definición preserva la estructura del cálculo diferencial escalar y permite establecer las siguientes propiedades básicas de la derivada vectorial:
+
+% \begin{theorem}{}{propiedades_funciones_vectoriales_derivables}
+%     Sean $\veca(t)$ y $\vecb(t)$ funciones vectoriales diferenciables de $t$, y sea $\phi(t)$ una función escalar diferenciable. Entonces se cumplen las siguientes propiedades:
+%     \begin{enumerate}[label=\textit{\roman*)}]
+%         \item \textbf{Linealidad}:
+%         $$\frac{d}{dt} \bigl(\veca(t) + \vecb(t)\bigr) = \frac{d}{dt}\veca(t) + \frac{d}{dt}\vecb(t).$$
+%         \item \textbf{Derivada del Producto Escalar}:
+%         $$\frac{d}{dt} \bigl(\veca(t) \cdot \vecb(t)\bigr) = \frac{d\veca(t)}{dt} \cdot \vecb(t) + \veca(t) \cdot \frac{d\vecb(t)}{dt}.$$
+%         \item \textbf{Derivada del Producto Vectorial}:
+%         $$\frac{d}{dt} \bigl(\veca(t) \times \vecb(t)\bigr) = \frac{d\veca(t)}{dt} \times \vecb(t) + \veca(t) \times \frac{d\vecb(t)}{dt}.$$
+%         \item \textbf{Derivada del Producto Escalar-Vectorial}:
+%         $$\frac{d}{dt} \bigl(\phi(t)\,\veca(t)\bigr) = \frac{d\phi(t)}{dt}\,\veca(t) + \phi(t)\,\frac{d\veca(t)}{dt}.$$
+%     \end{enumerate}
+%     \begin{fullwidth}[      width=\dimexpr\textwidth-\marginparsep-2cm\relax,%
+%                       outermargin=\dimexpr-2cm-\marginparsep\relax]%
+%         \demo Los incisos \romano{ii}, \romano{iii} y \romano{iv} se dejan como ejercicios para el lector.
+%         \begin{enumerate}[label=\textit{\roman*)}]
+%             \item Suponiendo que $\veca(t)$ y $\vecb(t)$ son funciones diferenciables respecto del tiempo y utilizando la \ref{definition:derivada_vector} tenemos que
+%             \begin{align*}
+%                 \frac{d \bigl(\veca(t) + \vecb(t)\bigr)}{dt} & = \lim_{\Deltat \to 0} \left[\frac{\veca(t + \Deltat) - \veca(t)}{\Deltat} + \frac{\vecb(t + \Deltat) - \vecb(t)}{\Deltat}\right] \\
+%                 & = \lim_{\Deltat \to 0} \frac{\veca(t + \Deltat) - \veca(t)}{\Deltat} + \lim_{\Deltat \to 0} \frac{\vecb(t + \Deltat) - \vecb(t)}{\Deltat} \\
+%                 & = \lim_{\Deltat \to 0} \left(\frac{[a_x(t + \Deltat)\veci + a_y(t + \Deltat)\vecj + a_z(t + \Deltat)\veck] - [a_x(t)\veci + a_y(t)\vecj + a_z(t)\veck]}{\Deltat}\right) \, + \\
+%                 & \quad + \lim_{\Deltat \to 0} \left(\frac{[b_x(t + \Deltat)\veci + b_y(t + \Deltat)\vecj + b_z(t + \Deltat)\veck] - [b_x(t)\veci + b_y(t)\vecj + b_z(t)\veck]}{\Deltat}\right) \\
+%                 & = \lim_{\Deltat \to 0} \left(\frac{a_x(t + \Deltat) - a_x(t)}{\Deltat}\veci + \frac{a_y(t + \Deltat) - a_y(t)}{\Deltat}\vecj + \frac{a_z(t + \Deltat) - a_z(t)}{\Deltat}\veck\right) + \\
+%                 & \quad + \lim_{\Deltat \to 0} \left(\frac{b_x(t + \Deltat) - b_x(t)}{\Deltat}\veci + \frac{b_y(t + \Deltat) - b_y(t)}{\Deltat}\vecj + \frac{b_z(t + \Deltat) - b_z(t)}{\Deltat}\veck\right) \\
+%                 & = \left[ \lim_{\Deltat \to 0} \frac{\Deltaax}{\Deltat}\veci + \lim_{\Deltat \to 0} \frac{\Deltaay}{\Deltat}\vecj + \lim_{\Deltat \to 0} \frac{\Deltaaz}{\Deltat}\veck \right] + \left[ \lim_{\Deltat \to 0} \frac{\Deltabx}{\Deltat}\veci + \lim_{\Deltat \to 0} \frac{\Deltaby}{\Deltat}\vecj + \lim_{\Deltat \to 0} \frac{\Deltabz}{\Deltat}\veck \right] \\
+%                 & = \left( \frac{d\,a_x}{dt}\,\veci + \frac{d\,a_y}{dt}\,\vecj + \frac{d\,a_z}{dt}\,\veck \right) + \left(\frac{d\,b_x}{dt}\,\veci + \frac{d\,b_y}{dt}\,\vecj + \frac{d\,b_z}{dt}\,\veck\right) \\
+%                 & = \frac{d}{dt}\veca(t) + \frac{d}{dt}\vecb(t).
+%             \end{align*}
+%             Por lo tanto, queda demostrado que $\dfrac{d}{dt} \bigl(\veca(t) + \vecb(t)\bigr) = \dfrac{d}{dt}\veca(t) + \dfrac{d}{dt}\vecb(t).$
+%         \end{enumerate}
+%     \end{fullwidth}
+% \end{theorem}
+
+\begin{theorem}{}{propiedades_funciones_vectoriales_derivables}
+    Sean $\veca(t)$ y $\vecb(t)$ funciones vectoriales diferenciables de $t$, y sea $\phi(t)$ una función escalar diferenciable. Entonces se cumplen las siguientes propiedades:
+    \begin{enumerate}[label=\textit{\roman*)}]
+        \item \textbf{Linealidad}:
+        $$\frac{d}{dt} \bigl(\veca(t) + \vecb(t)\bigr) = \frac{d}{dt}\veca(t) + \frac{d}{dt}\vecb(t).$$
+        \item \textbf{Derivada del Producto Escalar}:
+        $$\frac{d}{dt} \bigl(\veca(t) \cdot \vecb(t)\bigr) = \frac{d\veca(t)}{dt} \cdot \vecb(t) + \veca(t) \cdot \frac{d\vecb(t)}{dt}.$$
+        \item \textbf{Derivada del Producto Vectorial}:
+        $$\frac{d}{dt} \bigl(\veca(t) \times \vecb(t)\bigr) = \frac{d\veca(t)}{dt} \times \vecb(t) + \veca(t) \times \frac{d\vecb(t)}{dt}.$$
+        \item \textbf{Derivada del Producto Escalar-Vectorial}:
+        $$\frac{d}{dt} \bigl(\phi(t)\,\veca(t)\bigr) = \frac{d\phi(t)}{dt}\,\veca(t) + \phi(t)\,\frac{d\veca(t)}{dt}.$$
+    \end{enumerate}
+    \begin{demostracion}
+        A continuación, se demuestra la propiedad de linealidad \romano{i}. Las demostraciones para los incisos \romano{ii)}, \romano{iii)} y \romano{iv)} se proponen como ejercicio para el lector.
+
+        Aplicando la definición de la derivada y reordenando los términos, obtenemos:
+        \begin{align*}
+            \frac{d}{dt} \bigl(\veca(t) + \vecb(t)\bigr) 
+            & = \lim_{\Deltat \to 0} \frac{\bigl(\veca(t + \Deltat) + \vecb(t + \Deltat)\bigr) - \bigl(\veca(t) + \vecb(t)\bigr)}{\Deltat} \\
+            & = \lim_{\Deltat \to 0} \frac{\bigl(\veca(t + \Deltat) - \veca(t)\bigr) + \bigl(\vecb(t + \Deltat) - \vecb(t)\bigr)}{\Deltat} \\
+            & = \lim_{\Deltat \to 0} \left[ \frac{\veca(t + \Deltat) - \veca(t)}{\Deltat} + \frac{\vecb(t + \Deltat) - \vecb(t)}{\Deltat} \right] \\
+            & = \lim_{\Deltat \to 0} \frac{\veca(t + \Deltat) - \veca(t)}{\Deltat} + \lim_{\Deltat \to 0} \frac{\vecb(t + \Deltat) - \vecb(t)}{\Deltat} \\
+            & = \frac{d\,\veca(t)}{dt} + \frac{d\,\vecb(t)}{dt}.
+        \end{align*}
+        Por lo tanto, queda demostrado que $\dfrac{d}{dt} \bigl(\veca(t) + \vecb(t)\bigr) = \dfrac{d}{dt}\veca(t) + \dfrac{d}{dt}\vecb(t).$
+    \end{demostracion}
+\end{theorem}
+
+Estas propiedades constituyen la base del cálculo diferencial aplicado a funciones vectoriales. Al preservar la estructura del cálculo escalar, nos permiten extender de forma natural las técnicas de diferenciación a trayectorias y campos en el espacio, lo cual resulta fundamental para el estudio del movimiento.
+
+\cleardoublepage

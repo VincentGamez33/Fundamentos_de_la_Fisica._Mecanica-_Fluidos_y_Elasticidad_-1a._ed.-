@@ -1,0 +1,194 @@
+\chapter[Geometría Analítica]{GEOMETRÍA ANALÍTICA}
+\startcontents
+\printchaptertableofcontents
+
+% La geometría analítica proporciona el vínculo entre las ideas geométricas y sus representaciones algebraicas. En física, este lenguaje resulta indispensable para describir trayectorias de partículas, la forma de superficies y las transformaciones de coordenadas que simplifican la resolución de problemas.
+
+% En este apéndice se reúnen los conceptos fundamentales de geometría analítica que servirán como herramientas a lo largo del libro. No se pretende desarrollar una exposición exhaustiva del tema, sino presentar de manera clara y concisa los elementos necesarios para su aplicación en mecánica, fluidos y elasticidad.
+
+% \section{Secciones cónicas}
+
+% Comenzaremos con el estudio de las \textbf{secciones cónicas}, que aparecen en contextos como el análisis de órbitas planetarias o la propagación de ondas.
+
+% \begin{definition}{}{conica}
+%     Una \textbf{sección cónica} --o simplemente \textbf{cónica}-- es el conjunto de todos los puntos $P\,$ en un plano, tales que la razón de su distancia a un punto fijo $F\,$ --llamado \textbf{foco}-- y su distancia a una recta fija $L\,$ --llamada \textbf{directriz}-- es una constante positiva $e$. Esta razón constante se conoce como la \textbf{excentricidad} de la cónica:
+%     $$e = \frac{d(P, F)}{d(P, L)}.$$
+% \end{definition}
+
+% Las secciones cónicas se clasifican en tres categorías, según su forma y propiedades. Estas se establecen de acuerdo con los valores de la excentricidad $e$.
+% \begin{itemize}
+%     \item Si $e<1$, la cónica se llama \textbf{elipse}.
+%     \item Si $e=1$, la cónica se llama \textbf{parábola}.
+%     \item Si $e>1$, la cónica se llama \textbf{hipérbola}.
+% \end{itemize}
+
+% \subsection{Parábola}
+
+% \begin{definition}{}{parabola}
+%     Una \textbf{parábola} es la sección cónica que se obtiene cuando la excentricidad es igual a 1.
+
+%     Esto significa que una parábola es el lugar geométrico de todos los puntos $P$ del plano que \textbf{equidistan} de un punto fijo --el \textbf{foco} $F$-- y de una recta fija --la \textbf{directriz} $L$--.
+%     $$d(P, F) = d(P, L).$$
+
+%     Para encontrar su ecuación canónica, se sitúa el \textbf{vértice} --el punto de la parábola más cercano a la directriz-- en el origen $(0,0)$ y se alinea su eje de simetría con el eje $y$. En esta configuración, el foco se localiza en el punto $F(0, p)$ y la directriz es la recta horizontal $L$ con ecuación $y = -p$.
+
+%     La distancia de un punto cualquiera $P(x, y)$ de la parábola al foco es $d(P, F) = \sqrt{x^2 + (y-p)^2}$, y su distancia a la directriz es $d(P, L) = |y+p|$. Al igualar ambas distancias y simplificar la expresión, se obtiene la \textbf{ecuación canónica de la parábola} con eje vertical:
+%     $$x^2 = 4py.$$
+    
+%     El valor de $p\,$ representa la distancia del vértice al foco. El signo de $p$ determina la orientación de la parábola: si $p>0$, se abre hacia arriba; si $p<0$, se abre hacia abajo.
+% \end{definition}
+
+La geometría analítica proporciona el vínculo entre las ideas geométricas y sus representaciones algebraicas. En física, este lenguaje resulta indispensable para describir trayectorias de partículas, la forma de superficies y las transformaciones de coordenadas que simplifican la resolución de problemas.
+
+En este apéndice se reúnen los conceptos fundamentales de geometría analítica que servirán como herramientas a lo largo del libro. No se pretende desarrollar una exposición exhaustiva del tema, sino presentar de manera clara y concisa los elementos necesarios para su aplicación en mecánica, fluidos y elasticidad.
+
+\section{Secciones cónicas}
+
+Comenzaremos con el estudio de las \textbf{secciones cónicas}, que aparecen en contextos como el análisis de órbitas planetarias, la trayectoria de proyectiles o la propagación de ondas.
+
+\begin{definition}{}{conica}
+    Una \textbf{sección cónica}, o simplemente \textbf{cónica}, es el conjunto de todos los puntos $P$ en un plano tales que la razón de su distancia a un punto fijo $F$ ---llamado \textbf{foco}--- y su distancia a una recta fija $L$ ---llamada \textbf{directriz}--- es una constante positiva $e$. Esta razón constante se conoce como la \textbf{excentricidad} de la cónica:
+    $$e = \frac{d(P, F)}{d(P, L)}.$$
+\end{definition}
+
+Las cónicas se clasifican en tres categorías de acuerdo con el valor de la excentricidad $e$:
+\begin{itemize}
+    \item Si $e<1$, la cónica se llama \textbf{elipse}.
+    \item Si $e=1$, la cónica se llama \textbf{parábola}.
+    \item Si $e>1$, la cónica se llama \textbf{hipérbola}.
+\end{itemize}
+
+En las siguientes subsecciones estudiaremos cada caso por separado, comenzando con la parábola.
+
+\subsection{Parábola}
+
+\begin{definition}{}{parabola}
+    Una \textbf{parábola} es la sección cónica que se obtiene cuando la excentricidad es igual a 1. En otras palabras, la parábola es el lugar geométrico de todos los puntos $P$ del plano que \textbf{equidistan} de un punto fijo ---el \textbf{foco} $F$--- y de una recta fija ---la \textbf{directriz} $L$---:
+    $$d(P, F) = d(P, L).$$
+
+    Para deducir su ecuación canónica, se coloca el \textbf{vértice} ---el punto de la parábola más cercano a la directriz--- en el origen $(0,0)$ y se alinea su eje de simetría con el eje $y$. En esta disposición, el foco se ubica en $F(0,p)$ y la directriz es la recta horizontal $y=-p$.
+
+    La distancia de un punto cualquiera $P(x,y)$ al foco es $d(P,F)=\sqrt{x^2+(y-p)^2}$, mientras que su distancia a la directriz es $d(P,L)=|y+p|$. Al igualar ambas expresiones y simplificar, se obtiene la \textbf{ecuación canónica de la parábola} con eje vertical:
+    $$x^2 = 4py.$$
+
+    El parámetro $p$ representa la distancia del vértice al foco (y también del vértice a la directriz). Su signo determina la orientación de la parábola: si $p>0$, se abre hacia arriba; si $p<0$, se abre hacia abajo.
+\end{definition}
+
+Las parábolas aparecen en numerosos fenómenos físicos: describen la trayectoria de un proyectil bajo un campo gravitatorio uniforme (sin resistencia del aire) y son la base en el diseño de superficies reflectoras, como espejos parabólicos y antenas.
+
+
+\subsection{Elipse}
+\subsection{Hipérbola}
+
+\section{Otros sistemas coordenados}
+
+\subsection{Coordenadas polares}
+\subsection{Coordenadas cilíndricas}
+\subsection{Coordenadas esfércias}
+
+\section{Transformación de coordenadas}
+
+\subsection{Traslación de ejes}
+\subsection{Rotación de ejes}
+
+\section{Curvas en el plano}
+
+\subsection{Tangente}
+\subsection{Normal}
+\subsection{Radio de curvatura}
+En el estudio de las curvas planas no basta con conocer su ecuación cartesiana. 
+También es de interés determinar cómo se dobla la curva en cada uno de sus puntos. 
+Esta propiedad recibe el nombre de \textbf{curvatura} y mide el grado en que la tangente cambia de dirección al desplazarse a lo largo de la curva.
+
+En un punto dado $P$, existe siempre una circunferencia que se ajusta de manera más exacta a la curva: además de pasar por el punto y compartir la recta tangente, coincide con la curva en la forma en que ésta se curva. A dicha circunferencia se le denomina \textbf{círculo osculador}, y el radio de esta circunferencia se llama \textbf{radio de curvatura} de la curva en $P$.
+
+Para calcular este radio a partir de la ecuación de la curva, es necesario relacionar el giro de la tangente con las derivadas de la función: la primera derivada $y'=\dfrac{dy}{dx}$ proporciona la pendiente de la tangente, mientras que la segunda derivada $y''=\dfrac{d^2y}{dx^2}$ describe la rapidez con que dicha pendiente varía, es decir, el cambio en la dirección de la tangente.
+
+Estas observaciones conducen a la siguiente proposición, que da una fórmula práctica del radio de curvatura en coordenadas cartesianas.
+
+\begin{proposition}{}{radio_de_curvatura}
+    Sea $y=f(x)$ una curva plana con $f\in C^2$ en un entorno de $x_0$. Denotemos $P=(x_0,y_0)\,$ con $y_0=f(x_0)$. Si la tangente está bien definida en $P$, entonces el radio de curvatura en $P\,$ viene dado por
+    \[R=\dfrac{\left[1+\left(\dfrac{dy}{dx}\right)^2\right]^{3/2}}{\left|\dfrac{d^2y}{dx^2}\right|}.\]
+    \begin{demostracion}
+        Sea una circunferencia de radio $R$ y centro $(h,k)$ tangente a la curva en $P$. La ecuación de la circunferencia es
+        $$ (x-h)^2+(y-k)^2=R^2,$$
+        donde $h,k,R \in \RR$ son constantes. Derivando implícitamente respecto a $x$ y evaluando en $P$ obtenemos
+        \begin{align*}
+            \frac{d}{dx} [(x-h)^2 + (y-k)^2] &= \frac{d}{dx}R^2 \\
+            2(x-h) + 2(y-k)\frac{dy}{dx} &= 0 &&\text{(multiplicando por $\tfrac{1}{2}$)}\\
+            (x-h) + (y-k)\frac{dy}{dx} &= 0.
+        \end{align*}
+        Ahora, derivando implícitamente respecto a $x$ la expresión anterior
+        \begin{align*}
+            \frac{d}{dx} (x-h) + (y-k)\frac{dy}{dx} &= \frac{d}{dx} 0 \\
+            1 + (y-k)\frac{d^2y}{dx^2} + \left(\frac{dy}{dx}\right)\frac{dy}{dx} &= 0 \\
+            1 + (y-k)\frac{d^2y}{dx^2} + \left(\frac{dy}{dx}\right)^2 &= 0.
+        \end{align*}
+        Obteniendo el siguiente sistema de ecuaciones
+        \begin{equation}\label{eq:circunferencia}
+            (x-h)^2 + (y-k)^2 = R^2,
+        \end{equation}
+        \begin{equation}\label{eq:radio_1}
+            (x-h) + (y-k)\frac{dy}{dx} = 0,
+        \end{equation}
+        \begin{equation}\label{eq:radio_2}
+            1 + (y-k)\frac{d^2y}{dx^2} + \left(\frac{dy}{dx}\right)^2 = 0.
+        \end{equation}
+        De la ecuación \eqref{eq:radio_2} se sigue
+        \begin{align*}
+            (y-k)\frac{d^2y}{dx^2} &= -\left[1 + \left(\frac{dy}{dx}\right)^2\right] \\
+            y-k &= -\frac{1 + \left(\dfrac{dy}{dx}\right)^2}{\dfrac{d^2y}{dx^2}},
+        \end{align*}
+        y de la ecuación \eqref{eq:radio_1} obtenemos
+        $$x-h = -(y-k)\frac{dy}{dx}$$
+        sustituyendo el valor de $y-k$ en lo anterior se tiene
+        $$x-h = \frac{1 + \left(\dfrac{dy}{dx}\right)^2}{\dfrac{d^2y}{dx^2}}\frac{dy}{dx}.$$
+        Luego, sustituyendo los valores de $x-h$ y $y-k$ en la ecuación \eqref{eq:circunferencia}
+        \begin{align*}
+            \left[\frac{1 + \left(\dfrac{dy}{dx}\right)^2}{\dfrac{d^2y}{dx^2}}\frac{dy}{dx}\right]^2 + \left[-\frac{1 + \left(\dfrac{dy}{dx}\right)^2}{\dfrac{d^2y}{dx^2}}\right]^2 &= R^2 \\
+            \left[\frac{1 + \left(\dfrac{dy}{dx}\right)^2}{\dfrac{d^2y}{dx^2}}\right]^2\left[1+\left(\frac{dy}{dx}\right)^2\right] &= R^2 \\
+            \frac{\left(1 + \left(\dfrac{dy}{dx}\right)^2\right)^3}{\left(\dfrac{d^2y}{dx^2}\right)^2} &= R^2 \\
+            R &= \sqrt{\frac{\left(1 + \left(\dfrac{dy}{dx}\right)^2\right)^3}{\left(\dfrac{d^2y}{dx^2}\right)^2}} \\
+            R &= \frac{\left(1 + \left(\dfrac{dy}{dx}\right)^2\right)^{3/2}}{\left|\dfrac{d^2y}{dx^2}\right|}.
+        \end{align*}
+        Por lo tanto, queda demostrado que $R=\dfrac{\left[1+\left(\dfrac{dy}{dx}\right)^2\right]^{3/2}}{\left|\dfrac{d^2y}{dx^2}\right|}$.
+    \end{demostracion}
+\end{proposition}
+\begin{demostracion}
+    Sabemos por identidades trigonométricas que $ds^2 = dx^2 + dy^2$, entonces
+    \begin{align*}
+        ds^2 &= dx^2 + dy^2 \\
+        ds^2 &= dx^2\left(1 + \frac{dy^2}{dx^2}\right) \\
+        ds &= \sqrt{dx^2\left(1 + \frac{dy^2}{dx^2}\right)} \\
+        ds &= \left[1 + \left(\frac{dy}{dx}\right)^2\right]^{1/2} dx \label{eq:ds}.
+    \end{align*}
+    Además, sabemos que por los cursos de Geometría Analítica y Cálculo I que la longitud de arco de una  circunferencia está dada por
+    \[s = R\theta\]
+    lo cual implica que
+    \[ds = R\,d\theta,\]
+    o bien
+    \[R = \frac{ds}{d\theta}.\]
+    Luego, para $\theta$ sabemos que
+    \begin{align*}
+        \tan \theta &= \frac{dy}{dx} \\
+        \theta &= \arctan \left(\frac{dy}{dx}\right).
+    \end{align*}
+    Sea $v = \dfrac{dy}{dx}$, entonces derivando implícitamente y aplicando regla de cadena tenemos
+    \begin{align*}
+        \frac{d\theta}{dx} &= \frac{\frac{dv}{dx}}{1+v^2} \\
+        d\theta &= \frac{\frac{d}{dx}\left(\frac{dy}{dx}\right)}{1 + \left(\frac{dy}{dx}\right)^2} dx \\
+        d\theta &= \frac{\frac{d^2y}{dx^2}}{1 + \left(\frac{dy}{dx}\right)^2} dx.
+    \end{align*}
+    Sustituyendo el valor de $d\theta$ y $ds$ en $R$ se sigue
+    \begin{align*}
+        R &= \frac{\left[1 + \left(\frac{dy}{dx}\right)^2\right]^{1/2} dx}{\frac{\frac{d^2y}{dx^2}}{1 + \left(\frac{dy}{dx}\right)^2} dx} \\
+        R &= \frac{\left[1 + \left(\frac{dy}{dx}\right)^2\right]^{3/2}}{\frac{d^2y}{dx^2}}.
+    \end{align*}
+    Sabemos que $\frac{d^2y}{dx^2}$ nos da la concavidad de la función, para simplicar el análisis aplicaremos valor absoluto. Por lo tanto, queda demostrado que el radio de curvatura es de la forma
+    \[R=\dfrac{\left[1+\left(\dfrac{dy}{dx}\right)^2\right]^{3/2}}{\left|\dfrac{d^2y}{dx^2}\right|}.\]
+\end{demostracion}
+
+\cleardoublepage
+
+
+ % Posteriormente se introducirán \textbf{otros sistemas de coordenadas}, útiles para aprovechar simetrías geométricas en problemas físicos. A continuación se revisarán las \textbf{transformaciones de coordenadas}, necesarias para simplificar expresiones matemáticas mediante traslaciones y rotaciones de ejes. Finalmente, se estudiarán las \textbf{curvas en el plano}, con énfasis en la definición de tangente, normal y radio de curvatura, herramientas básicas para la descripción local del movimiento.

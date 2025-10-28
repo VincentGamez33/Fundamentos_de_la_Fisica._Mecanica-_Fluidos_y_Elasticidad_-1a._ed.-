@@ -1,0 +1,50 @@
+\pagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+    \coordinate (A) at ($(current page.west)!0.25!(current page.north west)$);
+
+    \node[anchor=center,opacity=0.75] at (current page.center) {
+        \includegraphics[height=\paperheight]
+            {Images/portada/espiral.png}
+    };
+
+    \fill[black!55,opacity=0.55] ($(A)+(1.5,-0.5)$) rectangle (current page.south east);
+
+    \fill[black!70,opacity=0.8] (current page.south west) rectangle ($(current page.south east)+(0,2.2)$);
+
+    \begin{scope}[font=\creato\bfseries\fontsize{68}{74}\selectfont]
+        \node[anchor=north west,right] (titulo) at ($(A)+(2,-2)$)
+            {\color{black!95}Fundamentos};
+        \node[anchor=north west,right] (titulo2) at ($(titulo.south west)+(0,-1.4)$)
+            {\color{black!95}de la Física};
+        
+        \node[anchor=north west] at ($(titulo.north west)+(-0.1,0.1)$)
+            {\color{white}Fundamentos};
+        \node[anchor=north west] at ($(titulo2.north west)+(-0.1,0.1)$)
+            {\color{white}de la Física};
+    \end{scope}
+
+    \draw[line width=1mm,white] ($(titulo2.south west)+(0,-0.55)$) -- ++(0.55\paperwidth,0);
+
+    \begin{scope}[font=\gravity\fontsize{32}{36}\bfseries\itshape\selectfont]
+        \node[anchor=north west,right] (subtitulo) at ($(titulo2.south west)+(0,-1.65)$)
+            {\color{black!95}Mecánica, Fluidos y Elasticidad};
+        \node[anchor=north west] at ($(subtitulo.north west)+(-0.05,0.05)$)
+            {\color{white}Mecánica, Fluidos y Elasticidad};
+    \end{scope}
+
+    \begin{scope}[font=\sft\fontsize{20}{24}\selectfont]
+        \node[anchor=north west,right] (edicion) at ($(subtitulo.south west)+(0,-0.8)$)
+            {\color{black!95}Primera Edición};
+        \node[anchor=north west] at ($(edicion.north west)+(-0.05,0.05)$)
+            {\color{white}Primera Edición};
+    \end{scope}
+
+    \begin{scope}[font=\ipn\fontsize{16}{45}\selectfont]
+        \node[anchor=north west,right] (autores) at ($(subtitulo.south west)+(0,-9.8)$)
+            {\color{black!95}Adolfo Helmut Navarro Rudolf $\bullet$ Vicente C. Gámez};
+        \node[anchor=north west] at ($(autores.north west)+(-0.05,0.05)$)
+            {\color{white}Adolfo Helmut Navarro Rudolf $\bullet$ Vicente C. Gámez};
+    \end{scope}
+\end{tikzpicture}
+
+\cleardoublepage
