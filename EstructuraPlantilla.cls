@@ -1437,6 +1437,7 @@ BoldItalicFont = *-BoldItalic]{TimesNewRoman}
 % Entorno: Solución
 % ==================================================
 \newenvironment{solucion}{%
+    \vspace{1mm plus 0.5mm}
     \par\noindent
     \begingroup\normalfont
     \global\@qedusedfalse% reinicia la bandera
@@ -1455,6 +1456,7 @@ BoldItalicFont = *-BoldItalic]{TimesNewRoman}
 % Entorno: Demostración
 % ==================================================
 \newenvironment{demostracion}{%
+    \vspace{1mm plus 0.5mm}
     \par\noindent
     \begingroup\normalfont
     \global\@qedusedfalse% reinicia la bandera
