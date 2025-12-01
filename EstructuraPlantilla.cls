@@ -23,9 +23,9 @@
 % \RequirePackage{showframe}
 
 \newcommand{\semblanzageometry}{
-  \newgeometry{
-    inner=22mm,outer=1.25cm,top=22mm,bottom=17mm
-  }
+    \newgeometry{
+        inner=22mm,outer=1.25cm,top=22mm,bottom=17mm
+    }
 }
 
 \setlength{\parskip}{0.6\baselineskip}
